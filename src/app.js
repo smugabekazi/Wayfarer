@@ -1,4 +1,5 @@
 import express from 'express';
+import userRouter from './routes/users';
 
 const app = express();
 
@@ -9,5 +10,5 @@ app.use(
   }),
 );
 
-
+app.use('/api/v1/auth', userRouter);
 export default app;
