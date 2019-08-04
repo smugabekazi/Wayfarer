@@ -7,17 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>WayFarer</title>
     <link rel="icon" href="images/icon.png">
-    <meta name="description" content="User login">
-    <meta name="keywords" content="Login">
-    <meta name="author" content="Schella Mugabekazi">
+    <meta name="description" content="Dashboard">
+    <meta name="keywords" content="Dashboard">
+    <meta name="author" content="Schella MugabeKazi">
     <link rel="stylesheet" href="css/style.0.1.css">
-    <script src="scripts/login.js"></script>
     <script src="scripts/scripts.js"></script>
+    <script src="scripts/dashboard.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css"
         integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
 </head>
 
 <body id="body">
+    <div class="loading"></div>
     <!-- start header -->
     <header class="on-scroll-shadow">
         <div class="container">
@@ -40,9 +41,9 @@
                     <div class="right">
                         <ul class="list-inline mainmenu">
                             <li><a href="index.html">Home</a>
-                            <li><a href="index.html#how-it-work">How it work?</a> </li>
-                            <li><a href="login.html">Login</a> </li>
-                            <li><a href="register.html">Register</a> </li>
+                            <li><a href="account.html" class="bold">
+                                    <span class="fas fa-user-circle l-text"></span>
+                                    Schella MugabeKazi</a> </li>
                         </ul>
                     </div>
                 </div>
@@ -50,47 +51,41 @@
         </nav>
         <div class="clear"></div>
     </header>
-    <!-- login -->
+    <!-- account -->
     <section>
         <div class="row">
             <div class="container">
-                <div class="xl-padding">
-                    <div class="s4 m4 l2 hide-on-medium hide-on-small indigo radius-5">
-                        <div class="xl-padding bglogin">
-                            <h1 class="xxl-text text-white capitilize">
-                                Welcome to<br>
-                                 WayFarer
-                            </h1>
-                            <div class="l-text text-white capitilize">Sign in to continue...</div>
-                            <div class="xl-v-padding"> &nbsp; </div>
+                <div class="s4 m4 l1">
+                    <ul class="sidebar">
+                        <li><a href="./dashboard.html"><span class="fas fa-cube"></span> Dashboard</a></li>
+                        <li><a href="./create-order.html"><span class="fas fa-user"></span> Book a trip</a></li>
+                        <li><a href="./notification.html"><span class="fas fa-bell"></span> Notifications</a></li>
+                        <li><a href="./users.html"><span class="fas fa-bell"></span> Users</a></li>
+                        <li><a href="./logout.html"><span class="fas fa-sign-out-alt"></span> Logout</a></li>
+                    </ul>
+                </div>
+                <div class="s4 m4 l3">
+                    <div class="row xl-v-margin">
+                        <div class="s4 m4 l4 shadow-2 radius-3">
+                            <div class="m-h-padding">
+                                <h2 class="xl-text">Dashboard</h2>
+                            </div>
                         </div>
                     </div>
-                    <div class="s4 m4 l2">
-                        <div class="l-padding">
-                            <h1 class="xxl-text text-indigo nm capitilize">
-                                Sign In
-                            </h1>
-                            <form action="user-account.html" onsubmit="login();return false;">
-                                <div class="input-field">
-                                    <label for="email">Email</label>
-                                    <input type="email" id="email" placeholder="your email">
-                                </div>
-                                <div class="input-field">
-                                    <label for="email">password</label>
-                                    <input type="password" placeholder="your email">
-                                </div>
-                                <div class="input-field">
-                                    <button type="submit" value="submit" href="user-account.html"
-                                        class="btn indigo text-white bold radius-6 m-text l-padding">Sign In</button>
-                                </div>
-                                <div class="row">
-                                    <div class="l-padding">
-                                        You don't have account yet? <a href="./register.html" class="bold">Sign up</a>
-                                    </div>
-                                </div>
-                            </form>
+                    <div class="clear"></div>
+                    <br>
+                    <h1 class="l-text text-indigo l-h-margin capitilize">My trips </h1>
+                    <div class="s4 m4 l4 shadow-2 radius-3">
+                        <div id="parcels" class="row l-padding">
+                            <div class='oneparcel'>
+                                <div class="s1 m1 l1 bold">Bus Number</div>
+                                <div class="s1 m1 l1 bold">Location</div>
+                                <div class="s1 m1 l1 bold">Destination</div>
+                                <div class="s1 m1 l1 bold">Actions</div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -100,8 +95,7 @@
     <br>
     <br>
     <div id="sidebar" class="hide white shadow-5">
-        <a href="user-account.html" onclick="closeSidebar();return false;"
-            class="right white l-margin m-padding radius-1 shadow-2">
+        <a href="#" onclick="closeSidebar();return false;" class="right white l-margin m-padding radius-1 shadow-2">
             <span class="fas fa-times"></span> </a>
         <ul class="list-block mainmenu">
             <li><a href="index.html">Home</a> </li>
@@ -116,7 +110,7 @@
         <div class="container center-align">
             <div class="xl-padding">
                 <span class="left">
-                    &copy; 2019 WayFarer
+                    @&copy; 2014 SendIT
                 </span>
                 <span class="right">
                     <a href="terms-and-condition.html" class="text-white">Terms and Condition</a>
