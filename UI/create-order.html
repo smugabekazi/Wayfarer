@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WayFarer</title>
+    <link rel="icon" href="images/icon.png">
+    <meta name="description" content="Account">
+    <meta name="keywords" content="Oders">
+    <meta name="author" content="Schella Mugabekazi">
+    <link rel="stylesheet" href="css/style.0.1.css">
+    <script src="scripts/scripts.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css"
+        integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCnmF76KmYp7VSKH0E_N6q7jgig3N-gzo&libraries=places"
+        type="text/javascript"></script>
+</head>
+
+<body id="body">
+    <!-- start header -->
+    <header class="on-scroll-shadow">
+        <div class="container">
+            <nav>
+                <div class="s4 m4 l1">
+                    <ul class="list-inline left-align">
+                        <li class="">
+                            <a href="#" class="xl-text hide-on-large left" onclick="toggleSidebar();return false;">
+                                <span class="fas fa-bars m-margin"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="logo">
+                                <img src="images/New Project (3).png" alt="">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="s4 m1 l3 hide-on-small hide-on-medium">
+                    <div class="right">
+                        <ul class="list-inline mainmenu">
+                            <li><a href="./index.html">Home</a>
+                            <li><a href="./account.html" class="bold">
+                                    <span class="fas fa-user-circle l-text"></span>
+                                    Schella Mugabekazi</a> </li>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+        </nav>
+        <div class="clear"></div>
+    </header>
+    <!-- account -->
+    <div class="clear"></div>
+    <section>
+        <div class="row">
+            <div class="container">
+                <div class="s4 m4 l1">
+                    <ul class="sidebar">
+                        <li><a href="./account.html"><span class="fas fa-cube"></span> Available Trips</a></li>
+                        <li><a href="./profile.html"><span class="fas fa-user"></span> Profile</a></li>
+                        <li><a href="./notification.html"><span class="fas fa-bell"></span> Notifications</a></li>
+                        <li><a href="./logout.html"><span class="fas fa-sign-out-alt"></span> Logout</a></li>
+                    </ul>
+                </div>
+                <div class="s4 m4 l3">
+                    <div class="row xl-v-margin">
+                        <div class="s4 m4 l4 shadow-2 radius-3">
+                            <div class="m-h-padding">
+                                <h2 class="xl-text">Create new Trip</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="row xl-v-margin">
+                        <div class="s4 m4 l4 shadow-2 radius-3">
+                            <form action="#">
+                                <div class="input-field">
+
+                                </div>
+                                <div class="input-field">
+                                    <label for="email">Bus Lincence Number</label>
+                                    <input type="text" id="weight" placeholder="RAD 677 U">
+                                </div>
+                                <div class="s4 m2 l2">
+                                    <div class="input-field">
+                                        <label for="email">Origin</label>
+                                        <input type="text" placeholder="Where are you?"></textarea>
+                                    </div>
+                                </div>
+                                <div class="s4 m2 l2">
+                                    <div class="input-field">
+                                        <label for="email">destination</label>
+                                        <input type="text" placeholder="Where are you going?"></textarea>
+                                    </div>
+                                </div>
+                                <div class="s4 m2 l2">
+                                    <div class="input-field">
+                                        <label for="email">Seating Capacity</label>
+                                        <input type="number" placeholder="30 seats"></textarea>
+                                    </div>
+                                </div>
+                                <div class="s4 m2 l2">
+                                    <div class="input-field">
+                                        <label for="email">Date</label>
+                                        <input type="datetime-local" placeholder="Where are you going?"></textarea>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="input-field">
+                                    <a href="./order.html"
+                                        class="btn indigo text-white bold radius-6 m-text l-padding">Create a trip</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        var directionsService = new google.maps.DirectionsService();
+        var directionsDisplay = new google.maps.DirectionsRenderer();
+
+        var map;
+
+        var pickup = new google.maps.LatLng(-1.958394, 30.069553);
+        var dropoff = new google.maps.LatLng(-1.944676, 30.0897449);
+
+        var mapOptions = {
+            zoom: 14,
+            center: pickup
+        }
+        map = new google.maps.Map(document.getElementById('canvas'), mapOptions);
+        directionsDisplay.setMap(map);
+
+        function calculateRoute() {
+            var request = {
+                origin: pickup,
+                destination: dropoff,
+                travelMode: 'DRIVING'
+            }
+            directionsService.route(request, function (result, status) {
+                if (status == 'OK') {
+                    directionsDisplay.setDirections(result);
+                }
+            });
+        }
+        calculateRoute();
+    </script>
+    <div class="clear"></div>
+    <br>
+    <br>
+    <div id="sidebar" class="hide white shadow-5">
+        <a href="#" onclick="closeSidebar();return false;" class="right white l-margin m-padding radius-1 shadow-2">
+            <span class="fas fa-times"></span> </a>
+    </div>
+</body>
+
+</html>
