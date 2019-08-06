@@ -1,4 +1,4 @@
-gitimport users from '../models/users';
+import users from '../models/users';
 import Validate from '../helpers/validate';
 
 class User {
