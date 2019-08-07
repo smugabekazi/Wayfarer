@@ -4,8 +4,6 @@ class Trips {
   /* Checking if the Trip exixts */
   static checkTrip(tripId) {
     let checkTrip = {};
-    // eslint-disable-next-line no-restricted-syntax
-    // eslint-disable-next-line guard-for-in
     for (const key in trips) {
       checkTrip = trips[key];
       if (trips[key].id === tripId) {
