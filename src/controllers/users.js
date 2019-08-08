@@ -1,6 +1,11 @@
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 import users from '../models/users';
 import Validate from '../helpers/validate';
-
+dotenv.config();
+const {
+  secretOrKey
+} = process.env;
 class User {
   static checkUserInputs(userId) {
     let checkUser = {};
@@ -17,10 +22,8 @@ class User {
         };
       }
     }
-
     return checkUser;
   }
-
   /* signup */
   static signup(req, res) {
     // Validate inputs
@@ -29,7 +32,6 @@ class User {
     checkUserInputs.push(Validate.string(req.body.lastName, true));
     checkUserInputs.push(Validate.email(req.body.email, true));
     checkUserInputs.push(Validate.password(req.body.password, true));
-
     for (let i = 0; i < checkUserInputs.length; i += 1) {
       if (checkUserInputs[i].isValid === false) {
         return res.status(400).json({
@@ -38,7 +40,6 @@ class User {
         });
       }
     }
-
     const newUser = {
       id: Math.ceil(Math.random() * 100),
       firstName: req.body.firstName,
@@ -48,24 +49,64 @@ class User {
       registered: Date.now(),
       isAdmin: req.body.isAdmin,
     };
-
-    users.push(newUser);
-
-    const isCreated = User.checkUserInputs(newUser.id);
-
-    if (Object.keys(isCreated).length > 0) {
-      return res.status(201).json({
-        message: 'The user was created successfully',
-        status: 201,
-        data: isCreated,
+    const checkUsers = users.find((user) => user.email === newUser.email);
+    if (checkUsers) {
+      return res.status(409).json({
+        error: 'email already exist',
       });
     }
-
+    users.push(newUser);
+    const isCreated = User.checkUserInputs(newUser.id);
+    if (Object.keys(isCreated).length > 0) {
+      return res.status(201).json({
+        status: 201,
+        data: isCreated,
+        message: 'The user was created successfully',
+      });
+    }
     return res.status(400).json({
       status: 400,
       error: 'User not created!',
     });
   }
+  /* login */
+  static login(req, res) {
+    // Validate inputs
+    let checkInput = false;
+    checkInput = Validate.email(req.body.email, true);
+    if (checkInput.isValid === false) {
+      return res.status(400).json({
+        status: 400,
+        error: checkInput.error,
+      });
+    }
+    let isUser = {};
+    users.forEach((user) => {
+      if (user.email === req.body.email && user.password === req.body.password) {
+        isUser = {
+          id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          registered: user.registered,
+          isAdmin: user.isAdmin,
+        };
+      }
+    });
+    if (Object.keys(isUser).length > 0) {
+      const token = jwt.sign(isUser, secretOrKey, {
+        expiresIn: '2h'
+      });
+      return res.status(200).json({
+        status: 200,
+        message: 'Successfully logged in',
+        token,
+      });
+    }
+    return res.status(404).json({
+      status: 404,
+      error: 'User not found!',
+    });
+  }
 }
-
 export default User;
