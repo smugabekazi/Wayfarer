@@ -1,6 +1,10 @@
 import express from 'express';
 import Trips from '../controllers/trips';
-
+import verifyToken from'../middleware/verifyToken';
 const router = express.Router();
-router.post('/', Trips.create);
+router.post('/', verifyToken, Trips.create);
+router.get('/', Trips.getAllTrips);
+router.get('/:tripId', Trips.getTrip);
+router.delete('/:tripId', verifyToken, Trips.deleteTrip);
+router.patch('/:tripId', Trips.cancelTrip);
 export default router;
