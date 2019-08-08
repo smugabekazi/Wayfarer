@@ -1,4 +1,4 @@
-# Wayfarer
+# Wayfare
 ## Features User Interfaces (UI)
 
 - User/client sign up.
