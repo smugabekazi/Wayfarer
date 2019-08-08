@@ -9,12 +9,14 @@ const verifyToken = (req, res, next) => {
   if (!token) {
     return res.status(401).json({
       error: 'unauthorized access',
+      status:401,
     });
   }
 ​
   jwt.verify(token, process.env.secretOrKey, (err, decoded) => {
     if (err) {
       return res.status(500).json({
+        status:500,
         error: 'failed to authenticate token',
       });
     }
