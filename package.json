@@ -6,8 +6,8 @@
   "scripts": {
     "start": "babel-node ./src/server.js",
     "dev": "nodemon --exec babel-node ./src/server.js",
-    "lint": "eslint src/",
-    "test": "nyc --reporter=text --reporter=html mocha src/tests/index.js --require @babel/polyfill --require @babel/register --timeout 10000 --exit"
+    "test": "nyc --reporter=text --reporter=html mocha src/tests/index.js --require @babel/polyfill --require @babel/register --timeout 10000 --exit",
+    "lint": "eslint src/"
   },
   "repository": {
     "type": "git",
