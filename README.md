@@ -1,4 +1,5 @@
 # Wayfare
+[![Build Status](https://travis-ci.org/smugabekazi/Wayfarer.svg?branch=develop)](https://travis-ci.org/smugabekazi/Wayfarer)
 ## Features User Interfaces (UI)
 
 - User/client sign up.
