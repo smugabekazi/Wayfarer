@@ -1,10 +1,11 @@
+/* eslint-disable no-restricted-syntax */
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import users from '../models/users';
 import Validate from '../helpers/validate';
 dotenv.config();
 const {
-  secretOrKey
+  secretOrKey,
 } = process.env;
 class User {
   static checkUserInputs(userId) {
@@ -28,10 +29,10 @@ class User {
   static signup(req, res) {
     // Validate inputs
     const checkUserInputs = [];
-    checkUserInputs.push(Validate.string(req.body.firstName, true));
-    checkUserInputs.push(Validate.string(req.body.lastName, true));
-    checkUserInputs.push(Validate.email(req.body.email, true));
-    checkUserInputs.push(Validate.password(req.body.password, true));
+    checkUserInputs.push((req.body.firstName, true));
+    checkUserInputs.push((req.body.lastName, true));
+    checkUserInputs.push((req.body.email, true));
+    checkUserInputs.push((req.body.password, true));
     for (let i = 0; i < checkUserInputs.length; i += 1) {
       if (checkUserInputs[i].isValid === false) {
         return res.status(400).json({
@@ -60,7 +61,6 @@ class User {
     if (Object.keys(isCreated).length > 0) {
       return res.status(201).json({
         status: 201,
-        data: isCreated,
         message: 'The user was created successfully',
       });
     }
@@ -73,7 +73,7 @@ class User {
   static login(req, res) {
     // Validate inputs
     let checkInput = false;
-    checkInput = Validate.email(req.body.email, true);
+    checkInput = req.body.email, true;
     if (checkInput.isValid === false) {
       return res.status(400).json({
         status: 400,
@@ -95,7 +95,7 @@ class User {
     });
     if (Object.keys(isUser).length > 0) {
       const token = jwt.sign(isUser, secretOrKey, {
-        expiresIn: '2h'
+        expiresIn: '2h',
       });
       return res.status(200).json({
         status: 200,
