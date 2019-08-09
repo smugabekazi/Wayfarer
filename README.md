@@ -1,5 +1,6 @@
 # Wayfare
 [![Build Status](https://travis-ci.org/smugabekazi/Wayfarer.svg?branch=develop)](https://travis-ci.org/smugabekazi/Wayfarer)
+[![Maintainability](https://api.codeclimate.com/v1/badges/ea2079fac604121772e5/maintainability)](https://codeclimate.com/github/smugabekazi/Wayfarer/maintainability)
 ## Features User Interfaces (UI)
 
 - User/client sign up.
