@@ -59,9 +59,16 @@ class User {
     users.push(newUser);
     const isCreated = User.checkUserInputs(newUser.id);
     if (Object.keys(isCreated).length > 0) {
+  
+      const token = jwt.sign(newUser, secretOrKey, {
+        expiresIn: '2h',
+      });
       return res.status(201).json({
         status: 201,
         message: 'The user was created successfully',
+        data: {
+          token,
+        }
       });
     }
     return res.status(400).json({

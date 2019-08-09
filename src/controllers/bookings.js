@@ -1,7 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-undef */
 import bookings from '../models/bookings';
-​
 class Bookings {
   /* Checking if the Trip exixts */
   static checkBooking(bookingId) {
@@ -12,10 +11,8 @@ class Bookings {
         break;
       }
     }
-​
     return checkBooking;
   }
-​
   /* create */
   static create(req, res) {
     const newBooking = {
@@ -27,11 +24,8 @@ class Bookings {
       lastName: req.body.lastName,
       userEmail: req.body.userEmail,
     };
-​
     bookings.push(newBooking);
-​
     const isCreated = Bookings.checkBooking(newBooking.bookingId);
-​
     if (Object.keys(isCreated).length > 0) {
       return res.status(201).json({
         status: 201,
@@ -39,13 +33,11 @@ class Bookings {
         data: isCreated,
       });
     }
-​
     return res.status(400).json({
       status: 400,
       error: 'Oops this booking not done!',
     });
   }
-​
   /* get all bookings */
   static getAllBookings(req, res) {
     if (Object.keys(bookings).length > 0) {
@@ -55,13 +47,13 @@ class Bookings {
         data: bookings,
       });
     }
-​
     return res.status(404).json({
       status: 404,
       error: 'Trip not found!',
+      
     });
+    console.log(req);
   }
-​
   /* delete a booking */
   static deleteBooking(req, res) {
     const bookingNumber = bookings.length;
@@ -74,19 +66,16 @@ class Bookings {
         break;
       }
     }
-​
     if (NewBookingNumber < bookingNumber) {
       return res.status(200).json({
         status: 200,
         data: 'Booking deleted',
       });
     }
-​
     return res.status(400).json({
       status: 400,
       error: 'Booking not deleted!',
     });
   }
 }
-​
 export default Bookings;

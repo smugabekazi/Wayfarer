@@ -14,5 +14,4 @@ const booking = [{
     lastName: 'Boss',
     userEmail: 'boss@andela.com',
   }];
-  ​
   export default booking;
