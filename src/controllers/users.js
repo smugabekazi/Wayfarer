@@ -107,7 +107,9 @@ class User {
       return res.status(200).json({
         status: 200,
         message: 'Successfully logged in',
-        token,
+        data: {
+          token,
+        }
       });
     }
     return res.status(404).json({
